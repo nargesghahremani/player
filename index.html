@@ -195,11 +195,18 @@
         } else {
           alert("landscape mobile", document.fullscreenElement);
           let elem = document.querySelector("video");
-           if (!document.fullscreenElement) {
-            elem.requestFullscreen().catch(err => {
-              alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-            });
-          } 
+          //  if (!document.fullscreenElement) {
+          //   elem.requestFullscreen().catch(err => {
+          //     alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+          //   });
+          // }
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
           // Landscape
         }
       })
