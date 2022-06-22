@@ -186,14 +186,14 @@
       console.log("portrait", portrait);
       portrait.addEventListener("change", function(e) {
         if(e.matches) {
-          alert("portrait", document.fullscreenElement);
+          alert("portrait mobile", document.fullscreenElement);
           let elem = document.querySelector("video");
             if (document.fullscreenElement) {
               document.exitFullscreen();
             }
           // Portrait mode
         } else {
-          alert("landscape", document.fullscreenElement);
+          alert("landscape mobile", document.fullscreenElement);
           let elem = document.querySelector("video");
            if (!document.fullscreenElement) {
             elem.requestFullscreen().catch(err => {
