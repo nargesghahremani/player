@@ -28,7 +28,7 @@
         text-align: right !important;
         font-family: "Shabnam" !important;
       }
-      .notenet-theme .shaka-fullscreen-button[aria-label="تمام صفحه"] {
+      /* .notenet-theme .shaka-fullscreen-button[aria-label="تمام صفحه"] {
         background: url("/static/img/icon/Expand.png");
         background-repeat: no-repeat;
         background-size: 20px;
@@ -57,7 +57,7 @@
         vertical-align: middle;
         width: 35px;
         font-size: 0 !important;
-      }
+      } */
     </style>
    
     <div class="shaka-player text-center">
@@ -70,12 +70,20 @@
     <script>
       var elem = document.getElementById("video");
       function openFullscreen() {
-        if (elem.requestFullscreen) {
-          elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) { /* Safari */
-          elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { /* IE11 */
-          elem.msRequestFullscreen();
+        if (
+          document.fullscreenEnabled || /* Standard syntax */
+          document.webkitFullscreenEnabled || /* Safari */
+          document.msFullscreenEnabled /* IE11 */
+        ) {
+        
+          /* Show the element in fullscreen */
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen(); /* Standard syntax */
+          } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+          }
         }
       }
       var manifestUri = "https://v.delgarm.com/video/806/2022/06/22/16558796531194.mp4";
@@ -221,6 +229,18 @@
           // Landscape
         }
       })
+
+      window.screen.orientation.onchange = function() {
+
+        if (this.type.startsWith('landscape')) {
+          alert("i am here");
+          document.documentElement.webkitRequestFullscreen();
+        } else {
+          alert("i am in else");
+          document.webkitExitFullscreen();
+        }
+
+      };
 
       document.addEventListener('DOMContentLoaded', initApp);
     </script>
