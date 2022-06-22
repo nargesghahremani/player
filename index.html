@@ -235,6 +235,13 @@
         if (this.type.startsWith('landscape')) {
           alert("i am here");
           document.documentElement.webkitRequestFullscreen();
+          document.documentElement.requestFullscreen();
+          document.documentElement.mozRequestFullscreen();
+          document.documentElement.msRequestFullscreen();
+          elem.webkitRequestFullscreen();
+          elem.requestFullscreen();
+          elem.mozRequestFullscreen();
+          elem.msRequestFullscreen();
         } else {
           alert("i am in else");
           document.webkitExitFullscreen();
