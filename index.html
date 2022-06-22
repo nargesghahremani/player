@@ -187,10 +187,19 @@
       portrait.addEventListener("change", function(e) {
         if(e.matches) {
           alert("portrait");
-            // Portrait mode
+          let elem = document.querySelector("video");
+            if (document.fullscreenElement) {
+              document.exitFullscreen();
+            }
+          // Portrait mode
         } else {
           alert("landscape");
-            // Landscape
+           if (!document.fullscreenElement) {
+            elem.requestFullscreen().catch(err => {
+              alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+            });
+          } 
+          // Landscape
         }
       })
 
